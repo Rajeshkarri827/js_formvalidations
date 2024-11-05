@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+
+    <h1>Login</h1>
+    <form id="loginForm">
+        <label for="loginUsername">Username:</label>
+        <input type="text" id="loginUsername" required><br><br>
+
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" required><br><br>
+
+        <label for="loginGmail">Gmail:</label>
+        <input type="email" id="loginGmail" required><br><br>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <p id="message"></p>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const loginUsername = document.getElementById('loginUsername').value;
+            const loginPassword = document.getElementById('loginPassword').value;
+            const loginGmail = document.getElementById('loginGmail').value;
+
+            const storedUsername = localStorage.getItem('username');
+            const storedPassword = localStorage.getItem('password');
+            const storedGmail = localStorage.getItem('gmail');
+
+            console.log('Retrieved from localStorage:');
+            console.log('Username:', storedUsername);
+            console.log('Password:', storedPassword);
+            console.log('Gmail:', storedGmail);
+
+            if (loginUsername === storedUsername && 
+                loginPassword === storedPassword && 
+                loginGmail === storedGmail) {
+                document.getElementById('message').innerText = 'Login successful!';
+            } else {
+                document.getElementById('message').innerText = 'Invalid credentials. Please try again.';
+            }
+        });
+    </script>
+
+</body>
+</html>
